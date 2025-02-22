@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f6;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            width: 70%;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .search-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        input, select, button {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .header {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .back-link {
+            color: #4a90e2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .icon {
+            font-size: 50px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <a href="./index.html" class="back-link">[Back To Dashboard]</a>
+    <div class="icon">
+        <img src="../assets/img/3305.png" alt="" width="100" height="100">
+    </div>
+    <div class="header">Student Registeration</div>
+    
+    <div class="container">
+        <div class="search-box">
+            <form id="registerForm">
+                <input type="text" placeholder="Last Name" id="last_name" name="last_name" required>
+                <input type="text" placeholder="First Name" id="first_name" name="first_name" required>
+                <select id="class" name="class" required>
+                    <option value="">Select class</option>
+                    <option value="creche">Creche</option>
+                    <option value="Pre-reception">Pre-reception</option>
+                    <option value="Reception">Reception</option>
+                    <option value="Nursery 1">Nursery I</option>
+                    <option value="Nursery 2">Nursery II</option>
+                    <option value="Primary 1">Primary I</option>
+                    <option value="Primary 2">Primary II</option>
+                    <option value="Primary 3">Primary III</option>
+                    <option value="Primary 4">Primary IV</option>
+                    <option value="Primary 5">Primary V</option>
+                    <option value="j.s.s 1">J.S.S 1</option>
+                    <option value="j.s.s 2">J.S.S 2</option>
+                    <option value="j.s.s 3">J.S.S 3</option>
+                </select>
+                <select id="gender" name="gender" required>
+                    <option value="">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <br><br>
+                <button type="submit" id="submit">Verify & Continue...</button>
+            </form>
+            
+        </div>    
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // $("#submit").click((e) =>{
+        //     e.preventDefault()
+        //     let data = {
+        //         last_name : $("#last_name").val(),
+        //         first_name: $("#first_name").val(),
+        //         gender: $("#gender").val(),
+        //         class: $("#class").val()
+        //     }
+        //     $.ajax({
+        //         url: "register.php",
+        //         type: "POST",
+        //         data: data,
+        //         dataType: "json",
+        //         success: function(response) {
+        //             Swal.fire({
+        //                 icon: response.status,
+        //                 title: response.message
+        //             });
+        //         },
+        //         error: function() {
+        //             Swal.fire({
+        //                 icon: "error",
+        //                 title: "Something went wrong. Please try again."
+        //             });
+        //         }
+        //     });
+        // })
+        $(document).ready(function() {
+        $("#registerForm").submit(function(e) {
+            e.preventDefault(); // Prevent page refresh
+
+            $.ajax({
+                url: "register.php",
+                type: "POST",
+                data: $(this).serialize(), // Serialize form data
+                success: function(response) {
+                    // console.log(response);
+                    
+                    Swal.fire({
+                        icon: "success",
+                        title: response
+                    });
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Something went wrong. Please try again."
+                    });
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
