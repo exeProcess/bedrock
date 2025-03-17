@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POS Payment Receipt</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            background-color: #f8f8f8;
+        }
+        .receipt {
+            width: 300px;
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .receipt h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .receipt p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .line {
+            border-top: 1px dashed black;
+            margin: 10px 0;
+        }
+        .total {
+            font-weight: bold;
+        }
+        .print-btn {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        /* table, th, td {
+            border: 1px solid black;
+        } */
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+        .logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt" id="receipt">
+        <img src="../../dist/assets/img/bed-removebg-preview.png" alt="Vendor Logo" class="logo">
+        <h2>Bedrock Schools</h2>
+        <p>Payment Receipt</p>
+        <p>Date: <span id="date"></span></p>
+        <p>Time: <span id="time"></span></p>
+        <div class="line"></div>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Amount</th>
+            </tr>
+            <tr>
+                <td>Electronics</td>
+                <td>₦50,000</td>
+            </tr>
+            <tr>
+                <td>VAT</td>
+                <td>₦2,500</td>
+            </tr>
+        </table>
+        <div class="line"></div>
+        <p class="total">Total Paid: ₦52,500</p>
+        <p>Payment Method: Card</p>
+        <p>Approval Code: 123456</p>
+        <div class="line"></div>
+        <p>Thank you for your purchase!</p>
+    </div>
+    <button class="print-btn" onclick="window.print()">Print Receipt</button>
+    <script>
+        const now = new Date();
+        document.getElementById("date").textContent = now.toLocaleDateString();
+        document.getElementById("time").textContent = now.toLocaleTimeString();
+    </script>
+</body>
+</html>

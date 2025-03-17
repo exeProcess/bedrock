@@ -53,7 +53,7 @@
     </style>
 </head>
 <body>
-    <a href="./index.html" class="back-link">[Back To Dashboard]</a>
+    <!-- <a href="./index.html" class="back-link">[Back To Dashboard]</a> -->
     <div class="icon">
         <img src="../assets/img/3305.png" alt="" width="100" height="100">
     </div>
@@ -62,29 +62,26 @@
     <div class="container">
         <div class="search-box">
             <form id="registerForm">
-                <input type="text" placeholder="Last Name" id="last_name" name="last_name" required>
+                <input type="date" id="dateInput" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date of Birth">
+
+                <input type="text" placeholder="Nationality" id="nationality" name="nationality" required>
+                <input type="text" placeholder="State of Origin" id="sor" name="sor" required>
+                <input type="text" placeholder="L.G.A" id="lga" name="lga" required>
+                <br><br>
+                <input type="text" placeholder="Resdential Address" id="ra" name="ra" style="width: 80%;" required>
+                <!-- <input type="text" placeholder="First Name" id="first_name" name="first_name" required>
                 <input type="text" placeholder="First Name" id="first_name" name="first_name" required>
-                <select id="class" name="class" required>
-                    <option value="">Select class</option>
-                    <option value="creche">Creche</option>
-                    <option value="Pre-reception">Pre-reception</option>
-                    <option value="Reception">Reception</option>
-                    <option value="Nursery 1">Nursery I</option>
-                    <option value="Nursery 2">Nursery II</option>
-                    <option value="Primary 1">Primary I</option>
-                    <option value="Primary 2">Primary II</option>
-                    <option value="Primary 3">Primary III</option>
-                    <option value="Primary 4">Primary IV</option>
-                    <option value="Primary 5">Primary V</option>
-                    <option value="j.s.s 1">J.S.S 1</option>
-                    <option value="j.s.s 2">J.S.S 2</option>
-                    <option value="j.s.s 3">J.S.S 3</option>
-                </select>
-                <select id="gender" name="gender" required>
-                    <option value="">Select gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select>
+                <input type="text" placeholder="First Name" id="first_name" name="first_name" required> -->
+                <br><br>
+                <input type="text" placeholder="Last School Attended" id="lsa" name="lsa" required>
+                <input type="text" placeholder="Last Class" id="lc" name="lc" required>
+                <input type="text" placeholder="Class Application" id="ca" name="ca" required>
+                <!-- <input type="text" placeholder="First Name" id="first_name" name="first_name" required>
+                <input type="text" placeholder="First Name" id="first_name" name="first_name" required> -->
+                <br><br>
+
+                <input type="text" placeholder="Parent / Guardian" id="pg" name="pg" required>
+                <input type="text" placeholder="Guardian Phone Number" id="gpn" name="gpn" required>
                 <br><br>
                 <button type="submit" id="submit">Verify & Continue...</button>
             </form>
@@ -124,7 +121,8 @@
         $(document).ready(function() {
             $("#registerForm").submit(function(e) {
                 e.preventDefault(); // Prevent page refresh
-
+                // console.log($(this).serialize());
+                
                 $.ajax({
                     url: "register.php",
                     type: "POST",
@@ -139,7 +137,7 @@
                             confirmButtonText: "Proceed"
                         }).then((result) => {
                             if (result.isConfirmed) {
-                                window.location.href = "registeration-proceed.html"; // Replace with your desired page URL
+                                window.location.href = "receipt.html"; // Replace with your desired page URL
                             }
                         });
 

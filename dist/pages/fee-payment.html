@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .invoice-container {
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            margin-top: 50px;
+        }
+        .invoice-header {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-container">
+        <div class="invoice-header">Fee Payment</div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>Student's Name</label>
+                <input type="text" class="form-control">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label>Student's Class</label>
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <!--   -->
+                    <th>Rate</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody id="invoice-items">
+                <tr>
+                    <td><input type="text" class="form-control" placeholder="Description of service or product..."></td>
+                    <!-- <td><input type="number" class="form-control" value="1"></td> -->
+                    <td><input type="text" class="form-control" placeholder="$ 0"></td>
+                    <td>$0.00</td>
+                </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-primary" id="add-item">+ Line Item</button>
+        <!-- <div class="row mt-4">
+            <div class="col-md-6">
+                <label>Notes</label>
+                <textarea class="form-control" placeholder="Notes - any relevant information not already covered"></textarea>
+            </div>
+            <div class="col-md-6">
+                <label>Terms</label>
+                <textarea class="form-control" placeholder="Terms and conditions - late fees, payment methods, delivery schedule"></textarea>
+            </div>
+        </div> -->
+        <div class="text-end mt-4">
+            <button class="btn btn-success">Send Invoice</button>
+        </div>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            $("#add-item").click(function() {
+                $("#invoice-items").append(`
+                    <tr>
+                        <td><input type="text" class="form-control" placeholder="Description of service or product..."></td>
+                        <td><input type="number" class="form-control" value="1"></td>
+                        <td><input type="text" class="form-control" placeholder="$ 0"></td>
+                        <td>$0.00</td>
+                    </tr>
+                `);
+            });
+        });
+    </script>
+</body>
+</html>
